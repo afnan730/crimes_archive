@@ -60,7 +60,6 @@
         <div class="card-area">
             @foreach ($category->crimes as $crime)
                 <x-card :crime="$crime" />
-                <x-card :crime="$crime" />
             @endforeach
         </div>
 
