@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Crime;
 use Illuminate\Http\Request;
 
 class CrimeController extends Controller
@@ -34,13 +35,25 @@ class CrimeController extends Controller
     {
         //
         $request->validate([
-            'image' => ['required'],
+            'media' => ['required', 'file', 'mimetypes:image/*,video/*'],
             'text' => ['required'],
             'category' => ['required', 'integer'],
             'translation' => ['required']
         ]);
+
         $category = Category::find($request->category);
-        return $category;
+        $folderName = 'media/' . $category->name;
+
+        $fileName = time() . '_' . $request->media->getClientOriginalName();
+        $filePath = $request->media->storeAs($folderName, $fileName);
+
+        $crime = new Crime();
+        $crime->text = $request->text;
+        $crime->media = $filePath;
+        $crime->category_id = $request->category;
+        $crime->translation = $request->translation;
+        $crime->save();
+        return redirect()->route('main');
     }
 
     /**

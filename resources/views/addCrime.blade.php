@@ -1,57 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Add To Archive</title>
-</head>
-
-<body>
-
-
-    <div class="container mt-1">
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <div class="alert alert-danger">{{ $error }}</div>
-            @endforeach
-
-        @endif
-        <form action="{{ route('crimes.store') }}" class="p-3" method="POST" enctype="multipart/form-data">
+@section('content')
+    <div class="d-flex justify-content-end ">
+        <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <div class="mb-3">
-                <label class="form-label">Image</label>
-                <input type="file" class="form-control" name="image">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Text</label>
-                <input type="text" class="form-control" name="text">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Category</label>
-                <select name="category" class="form-control">
-                    <option value="">Select</option>
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Translation</label>
-                <textarea name="translation" class="form-control" id="exampleInputPassword1"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-
+            <button type="submit" class="btn btn-dark btn-sm">Logout</button>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-</body>
+    <div class="container font-sans-serif" style="font-family: Tahoma;">
 
-</html>
+
+        <div class="row justify-content-center
+        text-gray-800">
+
+            <svg class="my-2" width="32" height="26" viewBox="0 0 36 30" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 30L35.3205 0H0.679491L18 30Z" fill="#823F42" />
+            </svg>
+            <div class="col-md-6">
+                <h4 class="text-center mb-4">Add To Archive</h4>
+                <div class="custom-card p-4 ">
+
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
+
+                    <form class="border border-light p-5" action="{{ route('crimes.store') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Media</label>
+                            <input type="file" class="form-control" name="media">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Text</label>
+                            <input type="text" class="form-control" name="text">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select name="category" class="form-select">
+                                <option value="">Select</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Translation</label>
+                            <textarea name="translation" class="form-control"></textarea>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn-custom btn btn-primary"
+                                style="background-color: #823F42; border-color: #823F42; color: white;">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

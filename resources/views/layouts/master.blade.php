@@ -10,23 +10,52 @@
     <title>Zionists Crimes Archive</title>
     <style>
         body {
-            background-image: url('backgroundL.png');
+            background-image: url('{{ asset('storage/themes/backgroundL.png') }}');
             padding-top: 3%;
             min-height: 100vh;
+            background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
+        .image-container {
+            width: 100%;
+            height: 150px;
+            /* Set a fixed height */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
         @media only screen and (max-width: 1650px) {
             body {
-                background-image: url('backgroundM.png');
+                background-image: url('{{ asset('storage/themes/backgroundM.png') }}');
             }
+        }
+
+        .image-container {
+            width: 100%;
+            height: 8rem;
+            /* Set a fixed height */
+            overflow: hidden;
         }
 
         @media only screen and (max-width: 500px) and (max-height: 932px) {
             body {
-                background-image: url('phone-background.png');
+                background-image: url('{{ asset('storage/themes/phone-background.png') }}');
+            }
+
+            .image-container {
+                width: 100%;
+                height: 6rem;
+                /* Set a fixed height */
+                overflow: hidden;
             }
         }
     </style>
