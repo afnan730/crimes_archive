@@ -264,7 +264,6 @@
         /* Functionality ====================================*/
 
         /* This is to keep the card centered (within its container) when opened */
-        /* Add this new CSS */
         .card.clicked {
             box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.75);
             width: 44rem;
@@ -277,7 +276,6 @@
         .card.clicked .inside-page {
             box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0, 0, 0, 0.1);
         }
-
 
         .vw {
             overflow: hidden;
@@ -309,7 +307,7 @@
 
                             <div class="card-front__bt">
                                 <p class="card-front__text-view card-front__text-view--city">
-                                    View Crime
+                                    {{ __('frontend.btn') }}
                                 </p>
                             </div>
                         </div>
@@ -336,7 +334,8 @@
                         <p class="inside-page__text">
                             {{ $crime->text }}
                         </p>
-                        <a href="#" class="inside-page__btn inside-page__btn--city">View Crime</a>
+                        <a href="{{ route('crime', ['lang' => App::getLocale(), 'id' => $crime->id]) }}"
+                            class="inside-page__btn inside-page__btn--city">{{ __('frontend.btn') }}</a>
                     </div>
                 </div>
             </div>

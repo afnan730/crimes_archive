@@ -61,7 +61,7 @@ class CrimeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('crimeDetails');
     }
 
     /**
